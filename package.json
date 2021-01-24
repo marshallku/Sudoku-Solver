@@ -1,0 +1,24 @@
+{
+    "name": "sudoku-solver",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.html",
+    "scripts": {
+        "build": "npx webpack --env.mode='production'",
+        "devBuild": "npx webpack --env.mode='development'"
+    },
+    "keywords": [
+        "sudoku"
+    ],
+    "author": "Marshall K",
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@types/node": "^14.14.16",
+        "javascript-obfuscator": "^2.9.1",
+        "ts-loader": "^8.0.11",
+        "typescript": "^4.1.2",
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12",
+        "webpack-obfuscator": "^2.6.0"
+    }
+}
