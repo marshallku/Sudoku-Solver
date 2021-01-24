@@ -34,7 +34,7 @@ function renderGrid(): DocumentFragment {
     const handleChange = (i: number, j: number, input: HTMLInputElement) => {
         const value = +input.value;
 
-        grid[i][j] = value || value > 9 ? 9 : 0;
+        grid[i][j] = value > 9 ? 9 : value;
         if (i === 8 && j === 8) {
             input.blur();
         } else {
@@ -59,7 +59,7 @@ function renderGrid(): DocumentFragment {
             const input = document.createElement("input");
 
             input.type = "number";
-            input.min = "1";
+            input.min = "0";
             input.max = "9";
             input.value = `${number}`;
 
