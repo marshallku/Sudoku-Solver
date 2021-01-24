@@ -1,15 +1,26 @@
 import startSolving from "./solver";
 
+// export let grid: sudokuGrid = [
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 0, 0, 0, 0, 0, 0, 0],
+// ];
 export let grid: sudokuGrid = [
+    [4, 0, 0, 0, 9, 0, 0, 8, 0],
+    [0, 0, 0, 5, 0, 0, 7, 0, 0],
+    [6, 2, 3, 7, 0, 0, 0, 4, 0],
+    [0, 4, 9, 0, 0, 0, 0, 7, 3],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [7, 6, 0, 0, 0, 0, 9, 2, 0],
+    [0, 3, 0, 0, 0, 2, 4, 1, 5],
+    [0, 0, 2, 0, 0, 6, 0, 0, 0],
+    [0, 1, 0, 0, 5, 0, 0, 0, 7],
 ];
 const inputGrid: HTMLInputElement[][] = [];
 
@@ -97,9 +108,10 @@ function renderGrid(): DocumentFragment {
 
 function renderButtons(): DocumentFragment {
     const fragment = document.createDocumentFragment();
+    const buttons = document.createElement("div");
     const solveBtn = document.createElement("button");
     const resetBtn = document.createElement("button");
-    const errorText = document.createElement("div");
+    const sudoku = <HTMLElement>document.querySelector(".sudoku");
 
     solveBtn.innerText = "Solve";
     resetBtn.innerText = "Reset";
@@ -110,18 +122,25 @@ function renderButtons(): DocumentFragment {
     solveBtn.addEventListener("click", () => {
         const result = startSolving(grid);
 
-        if (result === "Success") {
+        if (result) {
+            sudoku.style.setProperty("--bg", "rgba(153, 231, 255, 0.25)");
             updateGrid();
         } else {
+            sudoku.style.setProperty("--bg", "rgba(255, 66, 91, 0.25)");
             updateGrid();
-            errorText.innerText = result;
         }
+        sudoku.classList.add("reveal-status");
+        setTimeout(() => {
+            sudoku.classList.remove("reveal-status");
+        }, 500);
     });
     resetBtn.addEventListener("click", resetGrid);
 
-    fragment.append(errorText);
-    fragment.append(solveBtn);
-    fragment.append(resetBtn);
+    buttons.classList.add("buttons");
+
+    buttons.append(solveBtn);
+    buttons.append(resetBtn);
+    fragment.append(buttons);
 
     return fragment;
 }

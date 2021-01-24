@@ -76,16 +76,16 @@ function solve(): boolean {
     return false;
 }
 
-export default function startSolving(newGrid: sudokuGrid): string {
+export default function startSolving(newGrid: sudokuGrid): boolean {
     grid = newGrid;
 
     if (!isSolvable()) {
-        return "It's undefeatable!";
+        return false;
     } else {
         if (solve()) {
-            return "Success";
+            return true;
         } else {
-            return "Oops! I can't solve this.";
+            return false;
         }
     }
 }
