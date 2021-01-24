@@ -7,11 +7,19 @@
         "build": "npx webpack --env.mode='production'",
         "devBuild": "npx webpack --env.mode='development'"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marshall-ku/Sudoku-Solver.git"
+    },
     "keywords": [
         "sudoku"
     ],
     "author": "Marshall K",
     "license": "UNLICENSED",
+    "bugs": {
+        "url": "https://github.com/marshall-ku/Sudoku-Solver/issues"
+    },
+    "homepage": "https://github.com/marshall-ku/Sudoku-Solver#readme",
     "devDependencies": {
         "@types/node": "^14.14.16",
         "javascript-obfuscator": "^2.9.1",
