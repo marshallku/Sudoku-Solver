@@ -1,4 +1,5 @@
-import { Max, grid, updateGrid } from "./app";
+const Max = 9;
+let grid: sudokuGrid;
 
 function isInRow(row: number, num: number): boolean {
     for (let i = 0; i < Max; i++) {
@@ -75,7 +76,9 @@ function solve(): boolean {
     return false;
 }
 
-export default function startSolving(): string {
+export default function startSolving(newGrid: sudokuGrid): string {
+    grid = newGrid;
+
     if (!isSolvable()) {
         return "It's undefeatable!";
     } else {

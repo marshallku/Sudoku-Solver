@@ -1,6 +1,5 @@
 import startSolving from "./solver";
 
-export const Max = 9;
 export let grid: sudokuGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -109,7 +108,7 @@ function renderButtons(): DocumentFragment {
     resetBtn.classList.add("button");
 
     solveBtn.addEventListener("click", () => {
-        const result = startSolving();
+        const result = startSolving(grid);
 
         if (result === "Success") {
             updateGrid();
