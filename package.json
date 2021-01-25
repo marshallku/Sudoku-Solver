@@ -5,7 +5,8 @@
     "main": "index.html",
     "scripts": {
         "build": "npx webpack --env.mode='production'",
-        "devBuild": "npx webpack --env.mode='development'"
+        "devBuild": "npx webpack --env.mode='development'",
+        "test": "node test/solver.test.js"
     },
     "repository": {
         "type": "git",
