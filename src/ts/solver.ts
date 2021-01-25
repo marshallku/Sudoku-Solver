@@ -1,4 +1,5 @@
 const Max = 9;
+const SubMax = Math.floor(Max / 3);
 let grid: sudokuGrid;
 
 function isInRow(row: number, num: number): boolean {
@@ -18,8 +19,8 @@ function isInCol(col: number, num: number): boolean {
 }
 
 function isInSubGrid(startRow: number, startCol: number, num: number): boolean {
-    for (let i = startRow; i < startRow + 3; i++) {
-        for (let j = startCol; j < startCol + 3; j++) {
+    for (let i = startRow; i < startRow + SubMax; i++) {
+        for (let j = startCol; j < startCol + SubMax; j++) {
             if (grid[i][j] === num) return true;
         }
     }
@@ -31,7 +32,7 @@ function isValid(row: number, col: number, num: number): boolean {
     return (
         !isInRow(row, num) &&
         !isInCol(col, num) &&
-        !isInSubGrid(row - (row % 3), col - (col % 3), num)
+        !isInSubGrid(row - (row % SubMax), col - (col % SubMax), num)
     );
 }
 
@@ -65,7 +66,7 @@ function solve(): boolean {
 
     if (!hasEmptyBox(coord)) return true;
 
-    for (let num = 1; num <= 9; num++) {
+    for (let num = 1; num <= Max; num++) {
         if (isValid(coord.row, coord.col, num)) {
             grid[coord.row][coord.col] = num;
             if (solve()) return true;
