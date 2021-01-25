@@ -1,23 +1,6 @@
-// Original Code
-#include <iostream>
+#include <stdio.h>
 #define Max 9
 #define SubMax Max / 3
-
-/*
-
-Sample Input
-
-4 0 0 0 9 0 0 8 0
-0 0 0 5 0 0 7 0 0
-6 2 3 7 0 0 0 4 0
-0 4 9 0 0 0 0 7 3
-0 0 0 0 0 0 0 0 0
-7 6 0 0 0 0 9 2 0
-0 3 0 0 0 2 4 1 5
-0 0 2 0 0 6 0 0 0
-0 1 0 0 5 0 0 0 7
-
-*/
 
 int grid[Max][Max];
 
@@ -48,29 +31,29 @@ void printGrid()
     printf("└──────────┴───────────┴──────────┘\n\n");
 }
 
-bool isInRow(int row, int num)
+int isInRow(int row, int num)
 {
     for (int i = 0; i < Max; i++)
     {
         if (num == grid[row][i])
-            return true;
+            return 1;
     }
 
-    return false;
+    return 0;
 }
 
-bool isInCol(int col, int num)
+int isInCol(int col, int num)
 {
     for (int i = 0; i < Max; i++)
     {
         if (num == grid[i][col])
-            return true;
+            return 1;
     }
 
-    return false;
+    return 0;
 }
 
-bool isInSubGrid(int startRow, int startCol, int num)
+int isInSubGrid(int startRow, int startCol, int num)
 {
     int i, j;
 
@@ -79,35 +62,35 @@ bool isInSubGrid(int startRow, int startCol, int num)
         for (j = startCol; j < startCol + SubMax; j++)
         {
             if (grid[i][j] == num)
-                return true;
+                return 1;
         }
     }
 
-    return false;
+    return 0;
 }
 
-bool isValid(int row, int col, int num)
+int isValid(int row, int col, int num)
 {
     int m = SubMax;
 
     return !isInRow(row, num) && !isInCol(col, num) && !isInSubGrid(row - row % m, col - col % m, num);
 }
 
-bool hasEmptyBox(int &row, int &col)
+int hasEmptyBox(int *row, int *col)
 {
-    for (row = 0; row < Max; row++)
+    for (*row = 0; *row < Max; *row += 1)
     {
-        for (col = 0; col < Max; col++)
+        for (*col = 0; *col < Max; *col += 1)
         {
-            if (grid[row][col] == 0)
-                return true;
+            if (grid[*row][*col] == 0)
+                return 1;
         }
     }
 
-    return false;
+    return 0;
 }
 
-bool isSolvable()
+int isSolvable()
 {
     int row, col;
     int filled = 0;
@@ -124,12 +107,12 @@ bool isSolvable()
     return filled >= 17;
 }
 
-bool solve()
+int solve()
 {
     int row, col;
 
-    if (!hasEmptyBox(row, col))
-        return true;
+    if (!hasEmptyBox(&row, &col))
+        return 1;
 
     for (int num = 1; num <= Max; num++)
     {
@@ -137,12 +120,12 @@ bool solve()
         {
             grid[row][col] = num;
             if (solve())
-                return true;
+                return 1;
             grid[row][col] = 0;
         }
     }
 
-    return false;
+    return 0;
 }
 
 int main(void)
