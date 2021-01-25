@@ -1,6 +1,7 @@
 // Original Code
 #include <iostream>
 #define Max 9
+#define SubMax Max / 3
 
 /*
 
@@ -73,9 +74,9 @@ bool isInSubGrid(int startRow, int startCol, int num)
 {
     int i, j;
 
-    for (i = startRow; i < startRow + 3; i++)
+    for (i = startRow; i < startRow + SubMax; i++)
     {
-        for (j = startCol; j < startCol + 3; j++)
+        for (j = startCol; j < startCol + SubMax; j++)
         {
             if (grid[i][j] == num)
                 return true;
@@ -87,7 +88,7 @@ bool isInSubGrid(int startRow, int startCol, int num)
 
 bool isValid(int row, int col, int num)
 {
-    return !isInRow(row, num) && !isInCol(col, num) && !isInSubGrid(row - row % 3, col - col % 3, num);
+    return !isInRow(row, num) && !isInCol(col, num) && !isInSubGrid(row - row % SubMax, col - col % SubMax, num);
 }
 
 bool hasEmptyBox(int &row, int &col)
@@ -128,7 +129,7 @@ bool solve()
     if (!hasEmptyBox(row, col))
         return true;
 
-    for (int num = 1; num <= 9; num++)
+    for (int num = 1; num <= Max; num++)
     {
         if (isValid(row, col, num))
         {
@@ -144,9 +145,9 @@ bool solve()
 
 int main(void)
 {
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < Max; i++)
     {
-        for (int j = 0; j < 9; j++)
+        for (int j = 0; j < Max; j++)
         {
             scanf("%d", &grid[i][j]);
         }
