@@ -33,8 +33,10 @@ function renderGrid(): DocumentFragment {
     const fragment = document.createDocumentFragment();
     const handleChange = (i: number, j: number, input: HTMLInputElement) => {
         const value = +input.value;
+        const limited = value > 9 ? 9 : value;
 
-        grid[i][j] = value > 9 ? 9 : value;
+        grid[i][j] = limited;
+        input.value = `${limited}`;
         if (i === 8 && j === 8) {
             input.blur();
         } else {
