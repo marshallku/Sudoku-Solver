@@ -1,7 +1,7 @@
 // Original Code
 #include <iostream>
-#define Max 9
-#define SubMax Max / 3
+const int g_max = 9;
+const int g_subMax = g_max / 3;
 
 /*
 
@@ -19,17 +19,17 @@ Sample Input
 
 */
 
-int grid[Max][Max];
+int grid[g_max][g_max];
 
 void printGrid()
 {
     int row, col;
 
     printf("\n┌──────────┬───────────┬──────────┐\n");
-    for (row = 0; row < Max; row++)
+    for (row = 0; row < g_max; row++)
     {
         printf("│");
-        for (col = 0; col < Max; col++)
+        for (col = 0; col < g_max; col++)
         {
             printf(" %d ", grid[row][col]);
 
@@ -50,7 +50,7 @@ void printGrid()
 
 bool isInRow(int row, int num)
 {
-    for (int i = 0; i < Max; i++)
+    for (int i = 0; i < g_max; i++)
     {
         if (num == grid[row][i])
             return true;
@@ -61,7 +61,7 @@ bool isInRow(int row, int num)
 
 bool isInCol(int col, int num)
 {
-    for (int i = 0; i < Max; i++)
+    for (int i = 0; i < g_max; i++)
     {
         if (num == grid[i][col])
             return true;
@@ -74,9 +74,9 @@ bool isInSubGrid(int startRow, int startCol, int num)
 {
     int i, j;
 
-    for (i = startRow; i < startRow + SubMax; i++)
+    for (i = startRow; i < startRow + g_subMax; i++)
     {
-        for (j = startCol; j < startCol + SubMax; j++)
+        for (j = startCol; j < startCol + g_subMax; j++)
         {
             if (grid[i][j] == num)
                 return true;
@@ -88,16 +88,14 @@ bool isInSubGrid(int startRow, int startCol, int num)
 
 bool isValid(int row, int col, int num)
 {
-    int m = SubMax;
-
-    return !isInRow(row, num) && !isInCol(col, num) && !isInSubGrid(row - row % m, col - col % m, num);
+    return !isInRow(row, num) && !isInCol(col, num) && !isInSubGrid(row - row % g_subMax, col - col % g_subMax, num);
 }
 
 bool hasEmptyBox(int &row, int &col)
 {
-    for (row = 0; row < Max; row++)
+    for (row = 0; row < g_max; row++)
     {
-        for (col = 0; col < Max; col++)
+        for (col = 0; col < g_max; col++)
         {
             if (grid[row][col] == 0)
                 return true;
@@ -112,9 +110,9 @@ bool isSolvable()
     int row, col;
     int filled = 0;
 
-    for (row = 0; row < Max; row++)
+    for (row = 0; row < g_max; row++)
     {
-        for (col = 0; col < Max; col++)
+        for (col = 0; col < g_max; col++)
         {
             if (grid[row][col] != 0)
                 filled++;
@@ -131,7 +129,7 @@ bool solve()
     if (!hasEmptyBox(row, col))
         return true;
 
-    for (int num = 1; num <= Max; num++)
+    for (int num = 1; num <= g_max; num++)
     {
         if (isValid(row, col, num))
         {
@@ -147,9 +145,9 @@ bool solve()
 
 int main(void)
 {
-    for (int i = 0; i < Max; i++)
+    for (int i = 0; i < g_max; i++)
     {
-        for (int j = 0; j < Max; j++)
+        for (int j = 0; j < g_max; j++)
         {
             scanf("%d", &grid[i][j]);
         }
