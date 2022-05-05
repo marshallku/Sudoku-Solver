@@ -1,7 +1,7 @@
 import startSolving from "./util/solver";
 import "./css/style.css";
 
-export let grid: sudokuGrid = [
+const grid: sudokuGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -15,17 +15,9 @@ export let grid: sudokuGrid = [
 const inputGrid: HTMLInputElement[][] = [];
 
 function resetGrid() {
-    grid = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ];
+    grid.forEach((row) => {
+        row.fill(0);
+    });
 
     updateGrid();
 }
