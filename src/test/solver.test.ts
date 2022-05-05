@@ -1,7 +1,7 @@
-import startSolving from "../util/solver";
+import solver from "../util/solver";
 
 test("Test sudoku solver", () => {
-    const grid: sudokuGrid = [
+    const grid: SudokuGrid = [
         [0, 1, 0, 0, 0, 6, 0, 9, 0],
         [5, 0, 0, 1, 0, 0, 6, 0, 0],
         [0, 9, 0, 0, 0, 0, 1, 2, 5],
@@ -13,7 +13,7 @@ test("Test sudoku solver", () => {
         [0, 4, 0, 3, 0, 0, 0, 6, 0],
     ];
 
-    const solved: sudokuGrid = [
+    const solved: SudokuGrid = [
         [4, 1, 2, 8, 5, 6, 7, 9, 3],
         [5, 7, 3, 1, 9, 2, 6, 4, 8],
         [6, 9, 8, 7, 4, 3, 1, 2, 5],
@@ -25,6 +25,6 @@ test("Test sudoku solver", () => {
         [7, 4, 1, 3, 8, 5, 9, 6, 2],
     ];
 
-    startSolving(grid);
+    solver(grid);
     expect(grid).toEqual(solved);
 });

@@ -1,7 +1,7 @@
-import startSolving from "./util/solver";
+import solver from "./util/solver";
 import "./css/style.css";
 
-const grid: sudokuGrid = [
+const grid: SudokuGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -22,8 +22,8 @@ function resetGrid() {
     updateGrid();
 }
 
-function renderGrid(): DocumentFragment {
-    const fragment = document.createDocumentFragment();
+function Grid(): HTMLDivElement {
+    const div = document.createElement("div");
     const handleChange = (i: number, j: number, input: HTMLInputElement) => {
         const value = +input.value;
         const limited = value > 9 ? 9 : value;
@@ -84,13 +84,15 @@ function renderGrid(): DocumentFragment {
         inputGrid.push(inputRow);
 
         rowDiv.classList.add("sudoku__row");
-        fragment.append(rowDiv);
+        div.append(rowDiv);
     });
 
-    return fragment;
+    div.classList.add("sudoku");
+
+    return div;
 }
 
-function renderButtons(): DocumentFragment {
+function Buttons(): DocumentFragment {
     const fragment = document.createDocumentFragment();
     const buttons = document.createElement("div");
     const solveBtn = document.createElement("button");
@@ -104,7 +106,7 @@ function renderButtons(): DocumentFragment {
     resetBtn.classList.add("button");
 
     solveBtn.addEventListener("click", () => {
-        const result = startSolving(grid);
+        const result = solver(grid);
 
         if (result) {
             sudoku.style.setProperty("--bg", "rgba(153, 231, 255, 0.25)");
@@ -139,12 +141,8 @@ export function updateGrid() {
 
 function app() {
     const elem = document.getElementById("app");
-    const sudokuGrid = document.createElement("div");
 
-    sudokuGrid.classList.add("sudoku");
-    sudokuGrid.append(renderGrid());
-    elem?.append(sudokuGrid);
-    elem?.append(renderButtons());
+    elem?.append(Grid(), Buttons());
 }
 
 app();
