@@ -4,9 +4,10 @@
     "description": "",
     "main": "index.html",
     "scripts": {
-        "build": "npx webpack --env.mode='production'",
-        "devBuild": "npx webpack --env.mode='development'",
-        "test": "node test/solver.test.js"
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -22,12 +23,10 @@
     },
     "homepage": "https://marshall-ku.com/sudo-ku/",
     "devDependencies": {
+        "@types/jest": "^27.5.0",
         "@types/node": "^14.14.16",
-        "javascript-obfuscator": "^2.9.1",
-        "ts-loader": "^8.0.11",
+        "ts-jest": "^28.0.1",
         "typescript": "^4.1.2",
-        "webpack": "^4.44.2",
-        "webpack-cli": "^3.3.12",
-        "webpack-obfuscator": "^2.6.0"
+        "vite": "^2.9.8"
     }
 }

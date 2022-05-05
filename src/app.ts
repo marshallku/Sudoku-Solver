@@ -1,4 +1,4 @@
-import startSolving from "./ts/util/solver";
+import startSolving from "./util/solver";
 import "./css/style.css";
 
 export let grid: sudokuGrid = [
@@ -151,8 +151,8 @@ function app() {
 
     sudokuGrid.classList.add("sudoku");
     sudokuGrid.append(renderGrid());
-    elem.append(sudokuGrid);
-    elem.append(renderButtons());
+    elem?.append(sudokuGrid);
+    elem?.append(renderButtons());
 }
 
 app();
