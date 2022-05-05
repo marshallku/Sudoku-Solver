@@ -13,7 +13,7 @@ export default function Grid(): HTMLDivElement {
     const div = document.createElement("div");
     const handleChange = (i: number, j: number, input: HTMLInputElement) => {
         const value = +input.value;
-        const limited = value > 9 ? 9 : value;
+        const limited = Math.min(9, value);
 
         grid[i][j] = limited;
         input.value = `${limited}`;
