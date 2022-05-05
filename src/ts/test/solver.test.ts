@@ -1,5 +1,5 @@
 import { performance } from "perf_hooks";
-import startSolving from "./solver";
+import startSolving from "../util/solver";
 
 const grid: sudokuGrid = [
     [0, 1, 0, 0, 0, 6, 0, 9, 0],

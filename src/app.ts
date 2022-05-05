@@ -1,4 +1,5 @@
-import startSolving from "./solver";
+import startSolving from "./ts/util/solver";
+import "./css/style.css";
 
 export let grid: sudokuGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
